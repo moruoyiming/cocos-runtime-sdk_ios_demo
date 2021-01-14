@@ -196,10 +196,9 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
         self.isSDKLaunchTest = [[GameEnv getInstance] isSdkLaunchTest];
         NSString *version = [info objectForKey:KEY_VERSION];
         NSString *hash = [info objectForKey:KEY_HASH];
-        NSString *url = [GameEnv buildGamePackageRequest:self.appId version:version];
-        NSLog(@"game url is = %@",url);
-        url = @"http://chukong.oss-cn-qingdao.aliyuncs.com/uploads/202101/cpk/1c7d5a402ed591a8d6e346ab002b981b.cpk";
-        NSLog(@"game url is = %@",url);
+        NSString *url =[info objectForKey:KEY_URL];
+        //游戏地址被修改
+//        [GameEnv buildGamePackageRequest:self.appId version:version];
         self.gameInfo = [GameEnv buildAppOptions:self.appId version:version url:url hash:hash];
         
         self.customCommand = [[CustomCommand alloc] init];

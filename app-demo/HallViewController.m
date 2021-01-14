@@ -179,15 +179,26 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
 
 - (void)_onRequestComplete:(NSArray *)jsonArr {
     NSMutableArray *arr = [NSMutableArray array];
+    
     for (int i = 0; i < [jsonArr count]; i++) {
         NSDictionary *dic = [jsonArr objectAtIndex:i];
         if (dic) {
             DummyData *dummy = [self getGameDummyData:dic];
             if ([self _requireArrayIncludesRequire:dummy.require inConfig:[GameEnv getFeatureConfig]]) {
                 [arr addObject:dummy];
-            }
+             }
         }
     }
+    DummyData *newdata = [[DummyData alloc]init];
+    newdata.name = @"绝地大逃杀";
+    newdata.icon = @"http://pic.netbian.com/uploads/allimg/210107/215736-1610027856d485.jpg";
+    newdata.url = @"http://chukong.oss-cn-qingdao.aliyuncs.com/uploads/202101/cpk/1c7d5a402ed591a8d6e346ab002b981b.cpk";
+    newdata.version = @"13";
+    newdata.appID = @"602384325";
+    newdata.screenMode = 1;
+    newdata.orientation = 1 ;
+    newdata.packageHash =@"";
+    [arr addObject:newdata];
     self.dataArr = arr;
     [self.collectionView reloadData];
 }
@@ -294,12 +305,7 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-        [self goToGame:[self.dataArr objectAtIndex:indexPath.row]];
-//    DummyData *data =[self.dataArr objectAtIndex:indexPath.row];
-//    data.name = @"绝地大逃杀";
-//    data.appID = @"123123";
-//    data.url = @"http://chukong.oss-cn-qingdao.aliyuncs.com/uploads/202101/cpk/1c7d5a402ed591a8d6e346ab002b981b.cpk";
-//    [self goToGame:data];
+    [self goToGame:[self.dataArr objectAtIndex:indexPath.row]];
 }
 
 #pragma mark - Load Image
