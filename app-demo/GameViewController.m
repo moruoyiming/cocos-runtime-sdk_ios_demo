@@ -55,6 +55,7 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
 #import "SDKLaunchUtil.h"
 #import "AuthSettingViewController.h"
 #import "CustomCommand.h"
+#import "JSMutualManager.h"
 
 @interface GamePermissionView : UIView
 @property (nonatomic, copy) NSString *msg;
@@ -112,6 +113,7 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
         btn;
     });
     [self.bgView addSubview:self.posBtn];
+  
 }
 
 - (void)_onClickButton:(UIButton *)sender {
@@ -157,7 +159,7 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
 @property (nonatomic, weak) GameViewController *gameVC;
 @end
 
-@interface GameViewController () <SDKTestLaunchListener, CRRuntimeInitializeListener, CRPackageCheckVersionListener, CRPackageDownloadListener, CRPackageInstallListener, CRGameRunListener, CRGameQueryExitListener, CRGameExitListener, CRGameUserInfoListener, CRGameQueryPermissionDialogListener, CRGameOpenSettingDialogListener, CRGameOpenSysPermTipDialogListener, CRGameLoadSubpackageListener, CRGameRemoveListener, CRSKippedFrameWarningListener, GameRuntimeTaskListener, CRGameCustomCommandListener>
+@interface GameViewController () <SDKTestLaunchListener, CRRuntimeInitializeListener, CRPackageCheckVersionListener, CRPackageDownloadListener, CRPackageInstallListener, CRGameRunListener, CRGameQueryExitListener, CRGameExitListener, CRGameUserInfoListener, CRGameQueryPermissionDialogListener, CRGameOpenSettingDialogListener, CRGameOpenSysPermTipDialogListener, CRGameLoadSubpackageListener, CRGameRemoveListener, CRSKippedFrameWarningListener, GameRuntimeTaskListener, CRGameCustomCommandListener ,CRGameRunScriptListener>
 @property (nonatomic, strong) UIView<LoadingViewHandle> *loadingView;
 @property (nonatomic, strong) GamePermissionView *permissionView;
 @property (nonatomic, strong) AuthSettingViewController *authVC;
@@ -178,9 +180,12 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
 @property (nonatomic, assign) NSInteger currentTaskIndex;
 @property (nonatomic, assign) BOOL isReinstall;
 @property (nonatomic, strong) id<GameRuntimeTask> testPlugin;
+@property (nonatomic, strong) JSMutualManager *jsmutualManager;
 @end
 
 @implementation GameViewController
+
+
 
 - (instancetype)initWithData:(NSDictionary *)info
 {
@@ -202,6 +207,7 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
         self.customCommand = [[CustomCommand alloc] init];
         
         self.gameRuntimeTasks = [NSMutableArray array];
+        _jsmutualManager = [[JSMutualManager alloc]init];
     }
     return self;
 }
@@ -684,13 +690,52 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
     NSLog(@"onCallCustomCommand %@",index);
     if ([index containsString:@"init"]) {
         NSLog(@"onCallCustomCommand method is init !");
+        [_jsmutualManager jsMutualString:handle gameHandle:argv];
     }else if([index containsString:@"finish"]){
         NSLog(@"onCallCustomCommand method is finish !");
         [self onQueryExit:self.appId result:@""];
     }else if([index containsString:@"startCloudGame"]){
         NSLog(@"onCallCustomCommand method is startCloudGame !");
+        NSString *jsmutualString = [NSString stringWithFormat:@"GameSDK.nativeCallback('onInit','%@')",[self jsonStringWithDict:@{@"error":@(0),@"userId":@"userId",@"nickName":@"Jianruilin",@"headUrl":@"",@"location":@"China",@"sex":@"x",@"age":@(12)} isTrans:NO]];
+        NSLog(@"发送消息给游戏：%@",jsmutualString);
+        [self.gameHandle runScript:jsmutualString listener:self];
     }
+    
 }
+
+- (void)onRunScriptSuccess:(NSString *)returnType returnInfo:(NSDictionary *)returnValue{
+    NSLog(@"发送消息给游戏成功：returnType = %@ returnInfo = %@",returnType,returnValue);
+}
+
+- (void)onRunScriptFailure:(NSString *)error{
+    NSLog(@"发送消息给游戏失败：%@",error);
+}
+
+#pragma - mark 字典转Json字符串
+- (NSString *)jsonStringWithDict:(NSDictionary *)dict isTrans:(BOOL)trans {
+    NSError *error;
+    // NSJSONWritingSortedKeys这个枚举类型只适用iOS11所以我是使用下面写法解决的
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSString *jsonString;
+    if (!jsonData) {
+//        NSLog(@"%@",error);
+    }else{
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+    NSRange range = {0,jsonString.length};
+    //去掉字符串中的空格
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    NSRange range2 = {0,mutStr.length};
+    //去掉字符串中的换行符
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    
+    jsonString = mutStr;
+    //转义字符...
+    return jsonString;
+}
+
 @end
 
 @implementation GameLoadSubpackageHandle

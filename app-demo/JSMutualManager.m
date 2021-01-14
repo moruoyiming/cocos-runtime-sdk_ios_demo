@@ -53,6 +53,8 @@
         //游戏初始化 非对战游戏
         jsmutualString = [NSString stringWithFormat:@"GameSDK.nativeCallback('onInit','%@')",[self jsonStringWithDict:@{@"error":@(0),@"userId":@"userId",@"nickName":@"Jianruilin",@"headUrl":@"",@"location":@"China",@"sex":@"x",@"age":@(12)} isTrans:NO]];
         
+    }else if([method containsString:@"startCloudGame"]){
+        jsmutualString = [NSString stringWithFormat:@"GameSDK.nativeCallback('onInit','%@')",[self jsonStringWithDict:@{@"error":@(0),@"userId":@"userId",@"nickName":@"Jianruilin",@"headUrl":@"",@"location":@"China",@"sex":@"x",@"age":@(12)} isTrans:NO]];
     }
     if (jsmutualString.length > 1) {
         //分类js交互 Native call JS
