@@ -32,8 +32,6 @@
 		8ED6F7F025AEFC5D002CB6CB /* lib_rt_core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4E2A2B21EEBFA800B40CDA /* lib_rt_core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8ED6F7F225AEFC5E002CB6CB /* lib_rt_frame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4E2A2A21EEBFA800B40CDA /* lib_rt_frame.framework */; };
 		8ED6F7F325AEFC5E002CB6CB /* lib_rt_frame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4E2A2A21EEBFA800B40CDA /* lib_rt_frame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8ED6F83C25AFEDD6002CB6CB /* JSMutualManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED6F83B25AFEDD6002CB6CB /* JSMutualManager.m */; };
-		8ED6F84025AFF31B002CB6CB /* CodeBlockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED6F83F25AFF31B002CB6CB /* CodeBlockManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,10 +93,6 @@
 		0A5715E02223BF5B00AD1018 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
 		0A5715E32223BF7900AD1018 /* AuthSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthSettingViewController.h; sourceTree = "<group>"; };
 		0A5715E42223BF7900AD1018 /* AuthSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthSettingViewController.m; sourceTree = "<group>"; };
-		8ED6F83A25AFEDB4002CB6CB /* JSMutualManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSMutualManager.h; sourceTree = "<group>"; };
-		8ED6F83B25AFEDD6002CB6CB /* JSMutualManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMutualManager.m; sourceTree = "<group>"; };
-		8ED6F83E25AFF2A4002CB6CB /* CodeBlockManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeBlockManager.h; sourceTree = "<group>"; };
-		8ED6F83F25AFF31B002CB6CB /* CodeBlockManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeBlockManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,10 +166,6 @@
 				0965315F2424623700575B59 /* GameRuntimePluginTest.m */,
 				096531612424627700575B59 /* PluginUninstallViewController.h */,
 				096531622424627700575B59 /* PluginUninstallViewController.m */,
-				8ED6F83A25AFEDB4002CB6CB /* JSMutualManager.h */,
-				8ED6F83B25AFEDD6002CB6CB /* JSMutualManager.m */,
-				8ED6F83E25AFF2A4002CB6CB /* CodeBlockManager.h */,
-				8ED6F83F25AFF31B002CB6CB /* CodeBlockManager.m */,
 			);
 			path = "app-demo";
 			sourceTree = "<group>";
@@ -287,9 +277,7 @@
 				0A4E2A1E21EEBF7E00B40CDA /* RootViewController.m in Sources */,
 				0A4E2A2021EEBF7E00B40CDA /* SDKLaunchUtil.m in Sources */,
 				0A5715E22223BF5B00AD1018 /* UninstallViewController.m in Sources */,
-				8ED6F84025AFF31B002CB6CB /* CodeBlockManager.m in Sources */,
 				0A4E2A2121EEBF7E00B40CDA /* NavigationViewController.m in Sources */,
-				8ED6F83C25AFEDD6002CB6CB /* JSMutualManager.m in Sources */,
 				0A3C12AD222CCF0800C529C0 /* CustomCommand.m in Sources */,
 				096531602424623700575B59 /* GameRuntimePluginTest.m in Sources */,
 				0A3C12AC222CCF0800C529C0 /* ToastView.m in Sources */,

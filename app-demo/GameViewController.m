@@ -55,7 +55,6 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
 #import "SDKLaunchUtil.h"
 #import "AuthSettingViewController.h"
 #import "CustomCommand.h"
-#import "JSMutualManager.h"
 
 @interface GamePermissionView : UIView
 @property (nonatomic, copy) NSString *msg;
@@ -180,7 +179,6 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
 @property (nonatomic, assign) NSInteger currentTaskIndex;
 @property (nonatomic, assign) BOOL isReinstall;
 @property (nonatomic, strong) id<GameRuntimeTask> testPlugin;
-@property (nonatomic, strong) JSMutualManager *jsmutualManager;
 @end
 
 @implementation GameViewController
@@ -207,7 +205,6 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
         self.customCommand = [[CustomCommand alloc] init];
         
         self.gameRuntimeTasks = [NSMutableArray array];
-        _jsmutualManager = [[JSMutualManager alloc]init];
     }
     return self;
 }
@@ -690,7 +687,6 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
     NSLog(@"onCallCustomCommand %@",index);
     if ([index containsString:@"init"]) {
         NSLog(@"onCallCustomCommand method is init !");
-        [_jsmutualManager jsMutualString:handle gameHandle:argv];
     }else if([index containsString:@"finish"]){
         NSLog(@"onCallCustomCommand method is finish !");
         [self onQueryExit:self.appId result:@""];
