@@ -28,6 +28,7 @@
 		0A5715E12223BF5B00AD1018 /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5715DD2223BF5A00AD1018 /* ManagerViewController.m */; };
 		0A5715E22223BF5B00AD1018 /* UninstallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5715DE2223BF5A00AD1018 /* UninstallViewController.m */; };
 		0A5715E52223BF7900AD1018 /* AuthSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5715E42223BF7900AD1018 /* AuthSettingViewController.m */; };
+		8E25911725CBF7B200244C27 /* CouldGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E25911625CBF7B200244C27 /* CouldGameViewController.m */; };
 		8ED6F7EF25AEFC5D002CB6CB /* lib_rt_core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4E2A2B21EEBFA800B40CDA /* lib_rt_core.framework */; };
 		8ED6F7F025AEFC5D002CB6CB /* lib_rt_core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4E2A2B21EEBFA800B40CDA /* lib_rt_core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8ED6F7F225AEFC5E002CB6CB /* lib_rt_frame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4E2A2A21EEBFA800B40CDA /* lib_rt_frame.framework */; };
@@ -93,6 +94,8 @@
 		0A5715E02223BF5B00AD1018 /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
 		0A5715E32223BF7900AD1018 /* AuthSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthSettingViewController.h; sourceTree = "<group>"; };
 		0A5715E42223BF7900AD1018 /* AuthSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthSettingViewController.m; sourceTree = "<group>"; };
+		8E25911525CBF6C600244C27 /* CouldGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouldGameViewController.h; sourceTree = "<group>"; };
+		8E25911625CBF7B200244C27 /* CouldGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CouldGameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,8 @@
 				0965315F2424623700575B59 /* GameRuntimePluginTest.m */,
 				096531612424627700575B59 /* PluginUninstallViewController.h */,
 				096531622424627700575B59 /* PluginUninstallViewController.m */,
+				8E25911525CBF6C600244C27 /* CouldGameViewController.h */,
+				8E25911625CBF7B200244C27 /* CouldGameViewController.m */,
 			);
 			path = "app-demo";
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				0A5715E52223BF7900AD1018 /* AuthSettingViewController.m in Sources */,
 				096531632424627700575B59 /* PluginUninstallViewController.m in Sources */,
 				0A4E2A2621EEBF7E00B40CDA /* AccountViewController.m in Sources */,
+				8E25911725CBF7B200244C27 /* CouldGameViewController.m in Sources */,
 				0A4E2A2521EEBF7E00B40CDA /* AppDelegate.mm in Sources */,
 				0A4E2A1F21EEBF7E00B40CDA /* GameViewController.m in Sources */,
 				0A4E2A2221EEBF7E00B40CDA /* DummyData.m in Sources */,

@@ -55,6 +55,7 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
 #import "SDKLaunchUtil.h"
 #import "AuthSettingViewController.h"
 #import "CustomCommand.h"
+#import "CouldGameViewController.h"
 
 @interface GamePermissionView : UIView
 @property (nonatomic, copy) NSString *msg;
@@ -686,17 +687,27 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
     NSLog(@"onCallCustomCommand %@",index);
     if ([index containsString:@"init"]) {
         NSLog(@"onCallCustomCommand method is init !");
+        NSString *jsmutualString = [NSString stringWithFormat:@"GameSDK.nativeCallback('onInit','%@')",[self jsonStringWithDict:@{@"error":@(0),@"userId":@"userId",@"nickName":@"Jianruilin",@"headUrl":@"",@"location":@"China",@"sex":@"x",@"age":@(12)} isTrans:NO]];
+        NSLog(@"发送消息给游戏：%@",jsmutualString);
+        [self.gameHandle runScript:jsmutualString listener:self];
     }else if([index containsString:@"finish"]){
         NSLog(@"onCallCustomCommand method is finish !");
         [self onQueryExit:self.appId result:@""];
     }else if([index containsString:@"startCloudGame"]){
-        NSLog(@"onCallCustomCommand method is startCloudGame !");
-        NSString *jsmutualString = [NSString stringWithFormat:@"GameSDK.nativeCallback('onInit','%@')",[self jsonStringWithDict:@{@"error":@(0),@"userId":@"userId",@"nickName":@"Jianruilin",@"headUrl":@"",@"location":@"China",@"sex":@"x",@"age":@(12)} isTrans:NO]];
-        NSLog(@"发送消息给游戏：%@",jsmutualString);
-        [self.gameHandle runScript:jsmutualString listener:self];
+        NSLog(@"onCallCustomCommand method is startCloudGame ! start");
+        CouldGameViewController *gameVC = [[CouldGameViewController alloc] init];
+        [gameVC setModalPresentationStyle:UIModalPresentationFullScreen];
+        [self presentViewController:gameVC animated:YES completion:nil];
+        NSLog(@"onCallCustomCommand method is startCloudGame ! end");
     }
     
 }
+
+//TODO 跳转云游戏界面
+- (void)pushVC {
+    [self.navigationController pushViewController:[CouldGameViewController new] animated:YES];
+}
+
 
 - (void)onRunScriptSuccess:(NSString *)returnType returnInfo:(NSDictionary *)returnValue{
     NSLog(@"发送消息给游戏成功：returnType = %@ returnInfo = %@",returnType,returnValue);
