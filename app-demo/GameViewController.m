@@ -63,6 +63,7 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
 @property (nonatomic, strong) UILabel *msgLbl;
 @property (nonatomic, strong) UIButton *negBtn;
 @property (nonatomic, strong) UIButton *posBtn;
+@property (copy,nonatomic) NSString *text;
 - (void)show;
 @property (nonatomic, copy) void(^completePermission)(BOOL isPositive);
 @end
@@ -697,6 +698,7 @@ i.  This Agreement is made in both Chinese and English, and the Chinese version
         NSLog(@"onCallCustomCommand method is startCloudGame ! start");
         CouldGameViewController *gameVC = [[CouldGameViewController alloc] init];
         [gameVC setModalPresentationStyle:UIModalPresentationFullScreen];
+        gameVC.text = @"data";
         [self presentViewController:gameVC animated:YES completion:nil];
         NSLog(@"onCallCustomCommand method is startCloudGame ! end");
     }

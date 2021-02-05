@@ -16,7 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CouldGameViewController : UIViewController
-
+@property (copy,nonatomic) NSString *text;
 @end
 
 NS_ASSUME_NONNULL_END

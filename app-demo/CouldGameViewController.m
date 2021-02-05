@@ -34,7 +34,7 @@
     UIButton *button1 = [UIButton buttonWithType:(UIButtonTypeCustom)];
     button1.frame = CGRectMake(100, 200, 100, 50);
     button1.backgroundColor = [UIColor blackColor];
-    [button1 setTitle:@"present" forState:(UIControlStateNormal)];
+    [button1 setTitle:_text forState:(UIControlStateNormal)];
     [button1 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     [button1 addTarget:self action:@selector(presentVC) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:button1];
@@ -43,7 +43,6 @@
 
 - (void)popVC {
     [self dismissViewControllerAnimated:YES completion:nil];
-//    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)presentVC {
